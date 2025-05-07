@@ -18,6 +18,8 @@ from fastapi.responses import JSONResponse
 from pydantic import BaseModel
 from dotenv import load_dotenv
 
+from api import routes
+
 # Load environment variables
 load_dotenv()
 
@@ -41,6 +43,7 @@ app.add_middleware(
     allow_headers=["*"],
 )
 
+app.include_router(routes.router)
 # Configuration
 OPENROUTER_API_KEY = os.getenv("OPENROUTER_API_KEY", "")
 HF_MODEL_NAME = os.getenv(
@@ -48,6 +51,7 @@ HF_MODEL_NAME = os.getenv(
 UPLOAD_DIR = os.getenv("UPLOAD_DIR", "./uploads")
 DB_DIR = os.getenv("DB_DIR", "./vectordb")
 
+print(HF_MODEL_NAME)
 # Ensure directories exist
 os.makedirs(UPLOAD_DIR, exist_ok=True)
 os.makedirs(DB_DIR, exist_ok=True)
@@ -204,16 +208,6 @@ def process_documents(collection_id: str, file_paths: List[tuple]):
         logger.error(f"Error processing documents: {e}")
         raise HTTPException(
             status_code=500, detail=f"Error processing documents: {str(e)}")
-
-
-@app.get("/")
-async def index():
-    return {"message": "Welcome to ask my doc"}
-
-
-@app.get("/health")
-async def health_check():
-    return {"status": "healthy"}
 
 
 @app.post("/upload", response_model=Document)
@@ -451,3 +445,4 @@ async def change_model(model_info: LLMInfo):
     adapter.model = model_id
 
     return JSONResponse(content={"message": f"Model changed to {model_id}"})
+

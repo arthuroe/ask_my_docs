@@ -316,7 +316,7 @@ class OpenRouterFreeAdapter:
                 headers=headers,
                 json=payload
             )
-
+            
             if response.status_code == 200:
                 if stream:
                     # Handle streaming response
