@@ -2,7 +2,7 @@ import os
 import logging
 import json
 import requests
-from typing import List, Dict, Any, Optional, Union
+from typing import List, Dict, Any
 
 # Configure logging
 logging.basicConfig(level=logging.INFO)
