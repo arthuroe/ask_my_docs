@@ -28,6 +28,7 @@ app.add_middleware(
 
 app.include_router(routes.router)
 
+
 @app.get("/")
 async def index():
     return {"message": "Welcome to ask my doc"}

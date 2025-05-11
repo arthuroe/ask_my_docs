@@ -5,6 +5,7 @@ import re
 
 logger = logging.getLogger(__name__)
 
+
 def extract_text_from_pdf(file_path):
     """Extract text content from PDF files."""
     text = ""
@@ -15,8 +16,9 @@ def extract_text_from_pdf(file_path):
         return text
     except Exception as e:
         logger.error(f"Error extracting text from PDF: {e}")
-        # raise HTTPException(
-        #     status_code=500, detail=f"Error processing PDF: {str(e)}")
+        raise Exception(
+            status_code=500, detail=f"Error processing PDF: {str(e)}")
+
 
 def extract_text_from_markdown(file_path):
     """Convert Markdown to plain text."""
@@ -35,8 +37,9 @@ def extract_text_from_markdown(file_path):
         return text
     except Exception as e:
         logger.error(f"Error processing Markdown: {e}")
-        # raise HTTPException(
-        #     status_code=500, detail=f"Error processing Markdown: {str(e)}")
+        raise Exception(
+            status_code=500, detail=f"Error processing Markdown: {str(e)}")
+
 
 def extract_text_from_file(file_path, content_type):
     """Extract text based on file type."""

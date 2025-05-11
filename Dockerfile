@@ -22,8 +22,8 @@ RUN pip install -U pip
 RUN pip install --no-cache-dir -r requirements.txt
 
 # Copy application code
-COPY app.py .
-COPY openrouter_llm.py .
+COPY . .
+# COPY openrouter_llm.py .
 # COPY .env.free .env
 
 # Create necessary directories

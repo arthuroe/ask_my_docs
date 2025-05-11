@@ -38,6 +38,7 @@ openrouter_adapter = None
 # In production, you would use persistent storage
 vector_dbs = {}
 
+
 class QueryRequest(BaseModel):
     query: str
     collection_id: str
