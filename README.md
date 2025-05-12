@@ -14,9 +14,9 @@ AskMyDocs follows a modular architecture designed for flexibility and resource e
 
 The API is built around three core endpoints:
 
-1. **Document Upload**: `POST /api/documents` - Upload and process documents
-2. **Document Query**: `POST /api/query` - Ask questions about documents
-3. **System Status**: `GET /api/health` - Check system status and configuration
+1. **Document Upload**: `POST /upload` - Upload and process documents
+2. **Document Query**: `POST /query` - Ask questions about documents
+3. **System Status**: `GET /health` - Check system status and configuration
 
 ## Getting Started
 
@@ -88,67 +88,6 @@ The most suitable option for hosting, as it provides up to 16GB RAM and is desig
 3. Connect to your GitHub repository
 4. Select "Docker" as the Space SDK
 5. Configure environment variables in the Space settings
-
-### LLM Integration
-
-Free LLM APIs are accessed through OpenRouter:
-
-```python
-# Example of how OpenRouter is integrated
-response = requests.post(
-    "https://openrouter.ai/api/v1/chat/completions",
-    headers={"Authorization": f"Bearer {api_key}"},
-    json={"model": "meta-llama/llama-4-scout:free", "messages": [...]}
-)
-```
-
-## 📄 API Documentation
-
-### Document Upload
-
-```
-POST /api/documents
-```
-
-Request:
-
-- Form data with `file` and `session_id`
-
-Response:
-
-```json
-{
-  "id": "doc123",
-  "filename": "document.pdf",
-  "content_type": "application/pdf"
-}
-```
-
-### Query Documents
-
-```
-POST /api/query
-```
-
-Request:
-
-```json
-{
-  "session_id": "session123",
-  "query": "What does the document say about X?",
-  "max_results": 3
-}
-```
-
-Response:
-
-```json
-{
-  "answer": "According to the documents, X is...",
-  "sources": ["document1.pdf", "document2.txt"],
-  "context_used": true
-}
-```
 
 ### Error: "Model not found"
 
