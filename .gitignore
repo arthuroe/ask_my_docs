@@ -1,3 +1,32 @@
 env/
 .env
 __pycache__/
+*.pyc
+*.pyo
+*.pyd
+.Python
+*.so
+.coverage
+.pytest_cache
+.vscode/
+.idea/
+uploads/
+vectordb/
+node_modules/
+dist/
+.DS_Store
+
+# Claude-related files
+.claude/
+claude_cache/
+claude_session*/
+.claude_cache
+*.claude
+claude_history.json
+.claude_workspace/
+CLAUDE.md
+
+# Claude Code temporary files
+.claude-code/
+claude-code-*.tmp
+.cc_*

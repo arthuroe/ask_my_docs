@@ -35,11 +35,22 @@ logger = logging.getLogger(__name__)
 app = FastAPI(title="AskMyDocs API - Free LLM Edition")
 
 # Add CORS middleware for frontend integration
+# Configure CORS based on environment
+cors_origins = ["*"]  # Development default
+if os.getenv("ASKMYDOCS_ENV") == "production":
+    cors_origins = [
+        "https://yourdomain.com",  # Replace with your actual domain
+        "https://www.yourdomain.com",
+    ]
+    app_url = os.getenv("APP_URL", "https://yourdomain.com")
+    if app_url not in cors_origins:
+        cors_origins.append(app_url)
+
 app.add_middleware(
     CORSMiddleware,
-    allow_origins=["*"],  # Set to specific domain in production
+    allow_origins=cors_origins,
     allow_credentials=True,
-    allow_methods=["*"],
+    allow_methods=["GET", "POST", "DELETE", "PUT"],
     allow_headers=["*"],
 )
 
